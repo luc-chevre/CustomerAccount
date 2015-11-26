@@ -6,6 +6,9 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -36,19 +39,20 @@ public class Bank {
 
     public Customer getCustomerByNumber(int number) {
         for (Customer cus : this.customers) {
-            if (cus.getNumber()== number) {
+            if (cus.getNumber() == number) {
                 return cus;
             }
         }
         return null;
     }
-    
-    public void addCustomer(int number, String fn, String ln){
-        Customer cus = new Customer(number,fn,ln);
+
+    public Customer addCustomer(int number, String fn, String ln) {
+        Customer cus = new Customer(number, fn, ln);
         this.customers.add(cus);
+        return cus;
     }
-    
-    public void addAccount(String number,String name, double rate, Customer customer){
+
+    public void addAccount(String number, String name, double rate, Customer customer) {
         Account acc = new Account(customer, number, name);
         customer.getAccounts().add(acc);
     }
@@ -69,10 +73,6 @@ public class Bank {
         this.name = name;
     }
 
-    public ArrayList<Customer> getCustomers() {
-        return customers;
-    }
-
     public void setCustomers(ArrayList<Customer> customers) {
         this.customers = customers;
     }
@@ -85,4 +85,14 @@ public class Bank {
         this.accounts = accounts;
     }
 
+    public Map<Integer, Customer> getCustomers() {
+        Map map = new HashMap();
+        Iterator iterator = this.accounts.iterator();
+        while (iterator.hasNext()) {
+            Object key = iterator.next();
+            Object value = map.get(key);
+            map.put(key, value);
+        }
+        return map;
+    }
 }
