@@ -8,6 +8,18 @@
     <h:body>
         Hello from Facelets
         <a href="AjouteClient.xhtml">Ajouter un client</a>
+
+        <h:dataTable value="#{CustomerBean.customers}" var="c">
+
+            <h:column>
+                <!-- row record -->
+                #{c.getNumber}
+            </h:column>
+        </h:dataTable>
+
+
+
+
     </h:body>
 </html>
 

@@ -1,14 +1,13 @@
 package business;
 
-
+import business.Bank;
+import business.Customer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
-import business.Customer;
-import business.Bank;
 
 /**
  * Classe de services qui stocke les données de l'application dans la session de l'utilisateur.
