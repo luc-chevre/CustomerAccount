@@ -3,40 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package business;
 
 
+import business.Customer;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
- * @author luc.chevre
+ * @author Francois Gatherat <francois.gatherat@he-arc.ch>
  */
-@ManagedBean(name = "CustomerBean")
-@SessionScoped
+
+@Named(value="customerLISBean")
+@RequestScoped
 public class CustomerBean implements Serializable {
-    private int currentItem = 0;
-    private Services service = new Services();
-    private ArrayList<Customer> customers = service.getCustomers();
-    
-    public String getFirstName(){
-        return customers.get(currentItem).getFirstName();
-    }
+   
+    private DataModel<Customer> customersDM;
 
-    public int getNumber(){
-        return customers.get(currentItem).getNumber();
-    }
-
-    public String getLastName(){
-        return customers.get(currentItem).getLastName();
-    }
-
-    public ArrayList<Customer> getCustomers() {
-        return customers;
+    @Inject Services services;
+    public CustomerBean() {
+        
     }
     
-
+    public DataModel<Customer> getCustomersDM() {
+        customersDM = new ListDataModel<>();
+        customersDM.setWrappedData(services.getCustomersList());
+        return customersDM;
+    }
 }
