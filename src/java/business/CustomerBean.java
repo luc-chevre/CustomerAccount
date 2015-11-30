@@ -19,10 +19,9 @@ import javax.inject.Named;
 
 /**
  *
- * @author Francois Gatherat <francois.gatherat@he-arc.ch>
  */
 
-@Named(value="customerLISBean")
+@Named(value="CustomerBean")
 @RequestScoped
 public class CustomerBean implements Serializable {
    

@@ -12,7 +12,6 @@ public class Customer {
 
 
     public Customer(int number, String firstName, String lastName) {
-        this.accounts = accounts;
         this.number = number;
         this.firstName = firstName;
         this.lastName = lastName;
